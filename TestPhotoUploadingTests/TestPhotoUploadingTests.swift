@@ -1,11 +1,3 @@
-//
-//  TestPhotoUploadingTests.swift
-//  TestPhotoUploadingTests
-//
-//  Created by MacBook on 8/31/20.
-//  Copyright © 2020 Ivan Zavadsky. All rights reserved.
-//
-
 import XCTest
 @testable import TestPhotoUploading
 
