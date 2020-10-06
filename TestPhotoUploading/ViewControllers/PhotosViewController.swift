@@ -8,7 +8,7 @@ class PhotosViewController: UIViewController {
     private let footerHeight: CGFloat = 70
 
     private var refreshControl = UIRefreshControl()
-    private var loadingCell: LoadingCell!
+    private var loadingCell: LoadingCell?
 
     private var selectedPhoto: Photo?
     private var photos = [Photo]()
@@ -38,7 +38,7 @@ class PhotosViewController: UIViewController {
     private func setupPhotosTableViewFooter() {
         loadingCell = Bundle.main.loadNibNamed(LoadingCell.typeName,
                                                owner: self.photosTableView,
-                                               options: nil)!.first as? LoadingCell
+                                               options: nil)?.first as? LoadingCell
         loadingCell.setMessage(Strings.loadingMessage)
         self.photosTableView.tableFooterView = loadingCell
         self.photosTableView.sectionFooterHeight = footerHeight
@@ -47,7 +47,7 @@ class PhotosViewController: UIViewController {
 
     private func setStatusToActivityIndicator(isRunning: Bool) {
         loadingCell.changeSpinnerStatus(isRunning: isRunning)
-        photosTableView.tableFooterView!.isHidden = !isRunning;
+        photosTableView.tableFooterView?.isHidden = !isRunning;
     }
 
     private func setBackdroundMessage(_ message: String) {
@@ -176,7 +176,7 @@ extension PhotosViewController: UINavigationControllerDelegate, UIImagePickerCon
         PhotosService.shared.uploadPhoto(
             photo: PhotoUploadModel(name: Strings.devName,
                                     photo: image,
-                                    typeId: String(selectedPhoto!.id)),
+                                    typeId: String(selectedPhoto?.id)),
             completion: uploadPhotoCompleted)
     }
 }

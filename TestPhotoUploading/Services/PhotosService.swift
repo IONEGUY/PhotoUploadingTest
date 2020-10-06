@@ -13,12 +13,12 @@ class PhotosService {
     func uploadPhoto(photo: PhotoUploadModel,
                      completion: @escaping (Result<PhotoUploadModelResponce, AFError>) -> ()) {
         AF.upload(multipartFormData: { (multipartFormData) in
-            multipartFormData.append(photo.photo.jpegData(compressionQuality: 1)!,
+            multipartFormData.append(photo.photo.jpegData(compressionQuality: 1),
                                      withName: "photo",
                                      fileName: "image.jpeg",
                                      mimeType: "image/jpeg")
             for (key, value) in ["name": photo.name, "typeId": photo.typeId] {
-                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                multipartFormData.append(value.data(using: String.Encoding.utf8), withName: key)
             }
         }, to: "\(ApiConstants.baseApiUrl)photo")
             .validate()

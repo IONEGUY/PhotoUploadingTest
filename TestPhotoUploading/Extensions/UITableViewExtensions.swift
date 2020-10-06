@@ -13,7 +13,7 @@ extension UITableView {
     }
 
     func dequeueReusableCell<T: UITableViewCell>(with type: T.Type, for indexPath: IndexPath) -> T {
-        return self.dequeueReusableCell(withIdentifier: type.typeName, for: indexPath) as! T
+        return self.dequeueReusableCell(withIdentifier: type.typeName, for: indexPath) as? T ?? T()
     }
 }
 
